@@ -20,8 +20,8 @@ import GeoJSON from 'ol/format/GeoJSON';
 const Stack = createStackNavigator();
 
 const App = () => {
-  const [center, setCenter] = useState([-94.9065, 38.9884]);
-	const [zoom, setZoom] = useState(9);
+  const [center, setCenter] = useState([-122.2712, 37.8044]);
+	const [zoom, setZoom] = useState(10);
   return(
     // <NavigationContainer>
     //   <Stack.Navigator
@@ -52,7 +52,14 @@ const App = () => {
     //   </Stack.Navigator>
     // </NavigationContainer>
       <div>
-        <Map center={fromLonLat(center)} zoom={zoom}></Map>
+        <Map center={fromLonLat(center)} zoom={zoom}>
+          <Layers>
+            <TileLayer
+						  source={osm()}
+						  zIndex={0}
+					  />
+          </Layers>
+        </Map>
       </div>
   )
 };
