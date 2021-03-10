@@ -8,10 +8,20 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import DropDownMenuProps from '@material-ui/core/MenuItem';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 const MapComponent = ({navigation}) => {
+
+    const address = [{address: "East Oakland Youth Development Center", mile: "500 ft", hour: "2 hrs"},
+        {address: "Black Organizing Project", mile: "0.2 mi", hour: "2 hrs"},
+        {address: "East Oakland Collective", mile: "0.7 mi", hour: "2 hrs"},
+        {address: "Oakland YMCA", mile: "1 mi", hour: "3 hrs"},
+        {address: "Tri-City Health Center", mile: "1.5 mi", hour: "2 hrs"}
+    ];
+
   return (
     <View >
       <HeaderComponent style={mapStyles.main}
@@ -19,29 +29,64 @@ const MapComponent = ({navigation}) => {
         title='Map'
       >
       </HeaderComponent>
-      <Card>
-        <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
-        <Card.Content>
-          <Title>Card title</Title>
-          <Paragraph>Card content</Paragraph>
-        </Card.Content>
-        <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-        <Card.Actions>
-          <Button>Cancel</Button>
-          <Button>Ok</Button>
-        </Card.Actions>
-      </Card>
-      <DropDownMenuProps>
-        <InputLabel>Topic</InputLabel>
-        <Select
-            labelId="topics"
-            id="topics"
-            >
-            <MenuItem >Topic 1</MenuItem>
-            <MenuItem >Topic 2</MenuItem>
-            <MenuItem >Topic 3</MenuItem>
-        </Select>
-      </DropDownMenuProps>
+
+        <Grid container alignItems="center">
+
+            <DropDownMenuProps>
+                <InputLabel>Distance </InputLabel>
+                <Select
+                    labelId="distance"
+                    id="distance"
+                >
+                    <MenuItem >0.5 miles</MenuItem>
+                    <MenuItem >1.5 miles</MenuItem>
+                    <MenuItem >2.5 miles</MenuItem>
+                </Select>
+            </DropDownMenuProps>
+
+            <Divider orientation="vertical" flexItem />
+
+            <DropDownMenuProps>
+                <InputLabel>Topic</InputLabel>
+                <Select
+                    labelId="topics"
+                    id="topics"
+                >
+                    <MenuItem > Mental Health </MenuItem>
+                    <MenuItem > LGBTQ </MenuItem>
+                    <MenuItem > BLM </MenuItem>
+                    <MenuItem > Food Banks </MenuItem>
+                    <MenuItem > Health Centers </MenuItem>
+                    <MenuItem > Community cleanup/art </MenuItem>
+
+
+                </Select>
+            </DropDownMenuProps>
+
+
+        </Grid>
+
+        {(address).map((address, )=> (
+            <Card>
+                {/*<Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />*/}
+                <Card.Content >
+                    <Title class = "card">
+                        {address.address}
+                        {"      "}
+                        {"Hours"}
+                    </Title>
+                    <Paragraph>
+                        {address.mile}
+                        {"      "}
+                        {address.hour}
+                    </Paragraph>
+                </Card.Content>
+                {/*<Card.Cover source={{ uri: 'https://picsum.photos/700' }} />*/}
+
+            </Card>
+
+        ))}
+
       <ToolbarComponent style={mapStyles.navigation} navigation={navigation}></ToolbarComponent>
     </View>
   )

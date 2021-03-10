@@ -13,5 +13,11 @@ export const mapStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 36,
+  },
+  card: {
+    display: "flex",
+    justifyContent: "row",
+
+
   }
 });
